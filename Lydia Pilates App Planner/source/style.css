@@ -1,0 +1,93 @@
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url("/Frontend/background_with_mask_polygons.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+#logo {
+  filter: invert(27%) sepia(26%) saturate(505%) hue-rotate(81deg)
+    brightness(85%) contrast(89%);
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: 0 auto 20px;
+}
+#container {
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 25px;
+  padding: 50px;
+  background-color: #c9bca7;
+  position: fixed;
+  display: flex;
+  transform: translateX(-43.43%);
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+#sign_in_label {
+  font-weight: lighter;
+  font-size: 3.5rem;
+  text-align: center;
+  color: #2d2b2b;
+}
+
+#register_now {
+  font-size: 1.5rem;
+  text-align: center;
+  height: fit-content;
+  width: fit-content;
+  padding: 20px;
+}
+
+#register_now p {
+  color: #fff;
+}
+
+#register_now a {
+  color: #443e2e;
+  text-decoration: none;
+}
+
+#login_form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+input.user_input {
+  border: none;
+  outline: none;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  width: 20rem;
+  padding: 0.5rem;
+  margin: 10px 0;
+}
+
+input.user_login_submit {
+  margin-left: auto;
+  margin-top: 10px;
+}
+
+.btn {
+  border: none;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem;
+  width: 60%;
+  border-radius: 20px;
+  background-color: #443e2e;
+  color: #fff;
+  cursor: pointer;
+  font-size: large;
+}
