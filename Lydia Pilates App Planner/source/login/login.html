@@ -6,26 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
     <link rel="stylesheet" href="/source/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div id="container">
-      <div id="login_div">
-        <img src="/SVGs/spa-solid.svg" alt="logo" id="logo" />
-        <h2 id="sign_in_label">Sign in</h2>
-        <form id="login_form">
+    <div class="container">
+      <div class="login_div">
+        <div class="spa_solid_svg"></div>
+        <h2 class="sign_in_label">Sign in</h2>
+        <form class="login_form">
           <input type="email" id="email" class="user_input" /> <br />
           <input type="password" id="password" class="user_input" />
           <br />
           <input
             type="submit"
             id="user_login_submit"
-            class="btn"
+            class="btn_next"
             value="Continue"
           />
         </form>
-      </div>
-      <div id="register_now">
-        <p>New here? <a href="#">Register now</a></p>
+        <div class="register_now">
+          <p>New here? <a href="#">Register now</a></p>
+        </div>
       </div>
     </div>
   </body>
