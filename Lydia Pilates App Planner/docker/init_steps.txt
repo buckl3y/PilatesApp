@@ -1,0 +1,4 @@
+build image: `docker build -t <image name> .`
+Create a container: `docker run --name <container name> --env-file .env -p 5432:5432 -d <image name>`
+Login to DB Shell: `docker exec -it <container name> psql -U <username> -d <db name>`
+Verify Tables exist: `\dt` `\d` 
