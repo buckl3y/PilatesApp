@@ -1,4 +1,9 @@
+DOCKER BUILD with DockerFile:
 build image: `docker build -t <image name> .`
 Create a container: `docker run --name <container name> --env-file .env -p 5432:5432 -d <image name>`
 Login to DB Shell: `docker exec -it <container name> psql -U <username> -d <db name>`
 Verify Tables exist: `\dt` `\d` 
+
+DOCKER COMPOSE with docker-compose.yml file and DockerFile:
+Build docker images: docker-compose build --no-cache
+run the containers: docker-compuse up 

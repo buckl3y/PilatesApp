@@ -1,0 +1,35 @@
+services:
+  # Node.JS Connection Manager Service
+  web:
+    build: ./
+    container_name: db_connection_service
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - pilates_db
+    networks:
+      - default
+
+  # Pilates Database Service
+  pilates_db:
+    image: postgres:latest
+    container_name: db_container
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=pilates_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./initdb.d:/docker-entrypoint-initdb.d
+    networks:
+      - default
+
+# Development Network
+networks:
+  default:
+    driver: bridge
