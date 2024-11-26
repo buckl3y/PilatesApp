@@ -1,0 +1,25 @@
+{
+  "name": "db_conn_service_package",
+  "version": "1.0.0",
+  "description": "NodeJS Application for managing connection to pilates_db",
+  "main": "db_conn_service.js",
+  "scripts": {
+    "start": "node db_conn_service.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buckl3y/PilatesApp.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "Caleb Buckley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/buckl3y/PilatesApp/issues"
+  },
+  "homepage": "https://github.com/buckl3y/PilatesApp#readme",
+  "dependencies": {
+    "pg": "^8.13.1"
+  }
+}
