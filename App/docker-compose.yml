@@ -1,15 +1,9 @@
 services:
   # Node.JS Connection Manager Service
-  web:
+  javaservice:
     build: .
-    command: npm run start
     ports:
       - "3000:3000"
-    volumes:
-      - ./nodejs:/usr/app/
-      - /usr/app/nodejs/node_modules
-    environment:
-      - NODE_ENV=development
     depends_on:
       - postgres
     networks:
@@ -18,7 +12,6 @@ services:
   # Pilates Database Service
   postgres:
     image: postgres:latest
-    container_name: db_container
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres

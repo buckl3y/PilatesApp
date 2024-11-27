@@ -1,13 +1,11 @@
-FROM node:18
+
+FROM openjdk:21
 
 WORKDIR /usr/app/
 
-COPY ./nodejs/package.json .
-
-RUN npm install --quiet
-
-COPY ./nodejs .
+COPY ./javaservice/target/javaservice-1.0-SNAPSHOT.jar .
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+# Command to run the Java application
+CMD ["java", "-jar", "javaservice-1.0-SNAPSHOT.jar"]
