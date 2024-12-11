@@ -28,20 +28,33 @@ public class DB_Manager {
         this.port = port;
     }
 
-    protected Connection connectToDatabase() {
+    protected Connection connectToDatabase(int maxAttempts) {
         String jdbcUrl = "jdbc:postgresql://" + host + ":" + port + "/" + database;
         Connection conn = null;
+        int count = 0;
+
+        // check driverss
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException ex) {
             System.out.println("Postgres Driver Not Found.");
             return conn;
         }
-        try {
-            conn = DriverManager.getConnection(jdbcUrl, user, pw);
-        } catch (SQLException ex) {
-            return conn;
-        }
+
+        // attemp connection to DB `max attempts` times
+        do {
+            try {
+                System.out.println("Attempting connection to: " + jdbcUrl);
+                Thread.sleep(1500);
+                conn = DriverManager.getConnection(jdbcUrl, user, pw);
+                if (conn != null) {
+                    break;
+                }
+            } catch (SQLException | InterruptedException e) {
+                System.out.println("Connection Failed.");
+                count++;
+            }
+        } while (count < maxAttempts && conn == null);
         return conn;
     }
 
