@@ -33,7 +33,7 @@ public class DB_Manager {
         Connection conn = null;
         int count = 0;
 
-        // check driverss
+        // check drivers
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException ex) {

@@ -4,9 +4,16 @@
  */
 package com.mycompany.javaservice;
 
-import org.eclipse.jetty.server.*;
-import org.eclipse.jetty.servlet.*;
 import java.io.IOException;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.eclipse.jetty.server.Connector;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.servlet.ServletHandler;
 
 /**
  *
@@ -14,17 +21,42 @@ import java.io.IOException;
  */
 public class WebServer {
 
-    public void boot() {
-        int port = Integer.parseInt(System.getenv("BACKEND_PORT"));
-        String contextPath = "/";
+    private Server server;
+    private int port;
+    private String contextPath = "/";
 
-        Server server = new Server();
-        ServerConnector ssl = new ServerConnector(server);
-        ssl.setPort(port);
-        server.addConnector(ssl);
+    public WebServer(int port) {
+        this.port = port;
+    }
 
-        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        context.setContextPath(contextPath);
-        server.setHandler(context);
+    public void boot() throws Exception {
+        server = new Server();
+        ServerConnector connector = new ServerConnector(server);
+        connector.setPort(port);
+        server.setConnectors(new Connector[]{connector});
+
+        ServletHandler servletHandler = new ServletHandler();
+        servletHandler.addServletWithMapping(BlockingServlet.class, "/status");
+        server.setHandler(servletHandler);
+        server.start();
+    }
+
+    protected void shutdown() {
+        if (server != null) {
+            try {
+                server.stop();
+                server.destroy();
+                System.out.println("Server stopped.");
+            } catch (Exception e) {
+            }
+        }
+    }
+
+    protected int getStatus() throws IOException {
+        String url = "http://localhost:" + port + "/status";
+        HttpClient client = HttpClientBuilder.create().build();
+        HttpGet request = new HttpGet(url);
+        HttpResponse response = client.execute(request);
+        return response.getStatusLine().getStatusCode();
     }
 }
