@@ -24,5 +24,6 @@ public class BlockingServlet extends HttpServlet {
         response.setStatus(HttpServletResponse.SC_OK);
         response.getWriter().println("{ \"status\": \"ok\"}");
         response.getWriter().write("Server is running");
+        System.out.println("Response Received.");
     }
 }
